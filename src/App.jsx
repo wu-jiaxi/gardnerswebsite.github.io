@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Banner />
       <Routes>
-        <Route path="/" element={<Video />} />
+        <Route path="/gardnerswebsite.github.io" element={<Video />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/about" element={<About />} />
       </Routes>
