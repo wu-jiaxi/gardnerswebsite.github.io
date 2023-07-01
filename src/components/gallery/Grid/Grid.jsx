@@ -32,6 +32,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function ResponsiveGrid() {
+  const [selectedPicture, setSelectedPicture] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -63,32 +64,32 @@ export default function ResponsiveGrid() {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              {
-                <Modal
-                  open={open}
-                  onClose={handleClose}
-                  aria-labelledby="modal-modal-title"
-                  aria-describedby="modal-modal-description"
-                  sx={{
-                    "& .MuiBackdrop-root": {
-                      backgroundColor: "rgba(0, 0, 0, 0.05)",
-                    },
-                  }}
-                >
-                  <Box sx={style}>
-                    <img
-                      className="image"
-                      src={product.image}
-                      alt="no image"
-                      style={{ width: "100%" }}
-                      key={product.id}
-                    ></img>
-                  </Box>
-                </Modal>
-              }
             </Item>
           </Grid>
         ))}
+        {
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            sx={{
+              "& .MuiBackdrop-root": {
+                backgroundColor: "rgba(0, 0, 0, 0.05)",
+              },
+            }}
+          >
+            <Box sx={style}>
+              <img
+                className="image"
+                src={product.image}
+                alt="no image"
+                style={{ width: "100%" }}
+                key={product.id}
+              ></img>
+            </Box>
+          </Modal>
+        }
       </Grid>
     </Box>
   );
