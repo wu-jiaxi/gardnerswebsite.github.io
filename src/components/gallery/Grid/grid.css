@@ -9,3 +9,7 @@
 .gridItem {
   background-color: aqua;
 }
+
+#modalPictures {
+  width: 100%;
+}

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -10,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { data } from "./data";
 import Modal from "@mui/material/Modal";
+import "./grid.css";
 
 const style = {
   position: "absolute",
@@ -32,10 +34,58 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function ResponsiveGrid() {
-  const [selectedPicture, setSelectedPicture] = React.useState(null);
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [open, setOpen] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const openModal = (index) => {
+    handleChanges(index);
+  };
+
   const handleClose = () => setOpen(false);
+
+  const handleChanges = (index) => {
+    // 1. Make a shallow copy of the items
+    let items = [open];
+    // 2. Make a shallow copy of the item you want to mutate
+    let item = items[index];
+    // 3. Replace the property you're intested in
+    item = true;
+    // 4. Put it back into our array. N.B. we *are* mutating the array here, but that's why we made a copy first
+    items[index] = item;
+    // 5. Set the state to our new copy
+    setOpen(items);
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }} style={{ marginTop: 20 }}>
@@ -44,7 +94,7 @@ export default function ResponsiveGrid() {
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {data.map((product) => (
+        {data.map((product, index) => (
           <Grid item xs={2} sm={4} md={4} key={product.key}>
             <Item>
               <CardActionArea>
@@ -53,9 +103,32 @@ export default function ResponsiveGrid() {
                   height="200"
                   image={product.image}
                   alt={product.content}
-                  onClick={handleOpen}
+                  onClick={() => {
+                    openModal(index);
+                  }}
                 />
                 <CardContent>
+                  <Modal
+                    open={open[index]}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                    sx={{
+                      "& .MuiBackdrop-root": {
+                        backgroundColor: "rgba(0, 0, 0, 0.05)",
+                      },
+                    }}
+                  >
+                    <Box sx={style}>
+                      <div>
+                        <img
+                          src={product.image}
+                          alt={product.content}
+                          id="modalPictures"
+                        ></img>
+                      </div>
+                    </Box>
+                  </Modal>
                   <Typography gutterBottom variant="h5" component="div">
                     {product.title}
                   </Typography>
@@ -67,29 +140,6 @@ export default function ResponsiveGrid() {
             </Item>
           </Grid>
         ))}
-        {
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            sx={{
-              "& .MuiBackdrop-root": {
-                backgroundColor: "rgba(0, 0, 0, 0.05)",
-              },
-            }}
-          >
-            <Box sx={style}>
-              <img
-                className="image"
-                src={product.image}
-                alt="no image"
-                style={{ width: "100%" }}
-                key={product.id}
-              ></img>
-            </Box>
-          </Modal>
-        }
       </Grid>
     </Box>
   );
