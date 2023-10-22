@@ -1,0 +1,41 @@
+#squaresRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#squares {
+  height: 13px;
+  width: 13px;
+  background-color: #55d3e7;
+  margin: 5px;
+  border-color: #55d3e7;
+}
+
+.squares1 {
+  height: 13px;
+  width: 13px;
+  background-color: #f3bcde;
+  margin: 5px;
+}
+
+.squares2 {
+  height: 13px;
+  width: 13px;
+  background-color: #b80c09;
+  margin: 5px;
+}
+
+.squares3 {
+  height: 13px;
+  width: 13px;
+  background-color: #f4d06f;
+  margin: 5px;
+}
+
+.squares4 {
+  height: 13px;
+  width: 13px;
+  background-color: #ff8811;
+  margin: 5px;
+}
