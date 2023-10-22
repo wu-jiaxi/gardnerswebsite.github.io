@@ -1,3 +1,25 @@
 #banner {
   z-index: 100;
 }
+
+#urlLinks {
+  display: flex;
+  flex-direction: row;
+}
+#navbarBanner {
+  position: relative;
+  padding-top: -30px;
+}
+#bannerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+hr {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+}

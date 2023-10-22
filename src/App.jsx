@@ -8,7 +8,7 @@ import About from "./components/About/About";
 function App() {
   return (
     <div className="App">
-      <Banner />
+      <Banner id="bannerTest" />
       <Routes>
         <Route path="/" element={<Video />} />
         <Route path="/gallery" element={<Gallery />} />

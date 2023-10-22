@@ -7,7 +7,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 const router = createHashRouter([
   {
     path: "/*",
-    element: <App />,
+    element: <App id="paddingDelete" />,
   },
 ]);
 
